@@ -37,3 +37,15 @@ app.get("/people", async (req, res) => {
     console.log(error.message);
   }
 });
+
+app.get("/people/current", async (req, res) => {
+  try {
+    const latestRecord = await pool.query(
+      "SELECT * FROM peopleCounter ORDER BY time DESC LIMIT 1"
+    );
+
+    res.json(latestRecord.rows);
+  } catch (error) {
+    console.error(error.message);
+  }
+});
