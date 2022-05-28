@@ -1,4 +1,4 @@
-#include "counter.h"
+#include "main.h"
 
 // Structure with wich we are counting people
 counterStructure countPeople;
@@ -9,6 +9,7 @@ void setup()
 
   // Initialising counter values
   countPeople = counter_init();
+  http_client_init();
 }
 
 void loop() {
@@ -26,6 +27,7 @@ void loop() {
       // Doing it for both in and out because we don't want same person to be counted two times from two different sensors
       countPeople.nextOut = now + countPeople.intervalMax;
       countPeople.nextIn = now + countPeople.intervalMax;
+      http_client_send_data(countPeople.personNum.peopleInside, countPeople.personNum.peopleOutside);
     } else {
       countPeople.nextIn = now + countPeople.intervalMin;
     }
@@ -41,6 +43,7 @@ void loop() {
       // Doing it for both in and out because we don't want same person to be counted two times from two different sensors
       countPeople.nextIn = now + countPeople.intervalMax;
       countPeople.nextOut = now + countPeople.intervalMax;
+      http_client_send_data(countPeople.personNum.peopleInside, countPeople.personNum.peopleOutside);
     } else {
       countPeople.nextOut = now + countPeople.intervalMin;
     }

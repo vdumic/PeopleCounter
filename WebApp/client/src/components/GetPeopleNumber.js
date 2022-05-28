@@ -17,7 +17,10 @@ const GetPeopleNumber = () => {
   };
 
   useEffect(() => {
-    getPeopleNumber();
+    const interval = setInterval(() => {
+      getPeopleNumber();
+    }, 1000);
+    return () => clearInterval(interval);
   }, []);
 
   return (
