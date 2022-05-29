@@ -14,6 +14,7 @@ app.listen(5000, () => {
   console.log("Server has started on port 5000");
 });
 
+// Post data from ESP32 to database
 app.post("/people", async (req, res) => {
   try {
     const { peopleInside, peopleOutside } = req.body;
@@ -28,6 +29,7 @@ app.post("/people", async (req, res) => {
   }
 });
 
+// Get all records from database
 app.get("/people", async (req, res) => {
   try {
     const allRecords = await pool.query("SELECT * FROM peopleCounter");
@@ -38,6 +40,7 @@ app.get("/people", async (req, res) => {
   }
 });
 
+// Get current number of people from database
 app.get("/people/current", async (req, res) => {
   try {
     const latestRecord = await pool.query(
@@ -47,5 +50,18 @@ app.get("/people/current", async (req, res) => {
     res.json(latestRecord.rows);
   } catch (error) {
     console.error(error.message);
+  }
+});
+
+// Get maximum number of people per day
+app.get("/people/maxday", async (req, res) => {
+  try {
+    const maxPeoplePerDay = await pool.query(
+      "SELECT MAX(peopleInside) AS peopleEntered, time::date AS date FROM peopleCounter GROUP BY time::date"
+    );
+
+    res.json(maxPeoplePerDay.rows);
+  } catch (error) {
+    console.log(error.message);
   }
 });

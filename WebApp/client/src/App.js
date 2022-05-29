@@ -1,13 +1,17 @@
 import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import GetPeopleNumber from "./components/GetPeopleNumber";
+import MaxPeoplePerDay from "./components/MaxPeoplePerDay";
 
 function App() {
   return (
-    <div>
-      <h1>People Counter</h1>
-      <GetPeopleNumber />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" exact element={<GetPeopleNumber />} />
+        <Route path="/days" element={<MaxPeoplePerDay />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

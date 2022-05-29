@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const GetPeopleNumber = () => {
   const [peopleInside, setPeopleInside] = useState("");
@@ -27,6 +28,7 @@ const GetPeopleNumber = () => {
     <div>
       <h2>Number of people</h2>
       <div>{peopleInside - peopleOutside}</div>
+      <Link to="/days">See max people per day</Link>
     </div>
   );
 };
