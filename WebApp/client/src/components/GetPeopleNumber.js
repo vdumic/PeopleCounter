@@ -4,6 +4,7 @@ import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
 import "./GetPeopleNumber.css";
+import "../App.css";
 
 const GetPeopleNumber = () => {
   const [peopleInside, setPeopleInside] = useState("");
@@ -11,7 +12,7 @@ const GetPeopleNumber = () => {
 
   const getPeopleNumber = async () => {
     try {
-      const response = await fetch("http://localhost:5000/people/current");
+      const response = await fetch("http://192.168.0.20:5000/people/current");
       const jsonData = await response.json();
 
       setPeopleInside(jsonData[0].peopleinside);
@@ -36,7 +37,7 @@ const GetPeopleNumber = () => {
       <div style={{ width: 280, margin: "auto", padding: 20 }}>
         <CircularProgressbar
           value={peopleInside - peopleOutside}
-          maxValue={10}
+          maxValue={20}
           text={`${peopleInside - peopleOutside}`}
           styles={buildStyles({
             textColor: "#485f8e",
@@ -48,7 +49,9 @@ const GetPeopleNumber = () => {
         <p>Walked in total: {peopleInside}</p>
         <p>Walked out total: {peopleOutside}</p>
       </div>
-      <Link to="/days">See max people per day</Link>
+      <Link className="link" to="/days">
+        People in the room for each day
+      </Link>
     </div>
   );
 };

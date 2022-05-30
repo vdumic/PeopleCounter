@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import GetPeopleNumber from "./components/GetPeopleNumber";
 import MaxPeoplePerDay from "./components/MaxPeoplePerDay";
 
-function App() {
+const App = () => {
   return (
     <BrowserRouter>
       <Routes>
@@ -14,6 +14,6 @@ function App() {
       </Routes>
     </BrowserRouter>
   );
-}
+};
 
 export default App;

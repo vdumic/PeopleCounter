@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+
+import "../App.css";
 
 const MaxPeoplePerDay = () => {
   const [peoplePerDay, setPeoplePerDay] = useState([]);
 
   const getMaxPeoplePerDay = async () => {
     try {
-      const response = await fetch("http://localhost:5000/people/maxday");
+      const response = await fetch("http://192.168.0.20:5000/people/maxday");
       const jsonData = await response.json();
 
       setPeoplePerDay(jsonData);
@@ -21,8 +24,8 @@ const MaxPeoplePerDay = () => {
   }, []);
 
   return (
-    <div>
-      <h1>Max people entered per day</h1>
+    <div className="Counter">
+      <h1>People Counter</h1>
       <div className="container">
         <table>
           <thead>
@@ -45,6 +48,9 @@ const MaxPeoplePerDay = () => {
           </tbody>
         </table>
       </div>
+      <Link className="link" to="/">
+        Go to Home page
+      </Link>
     </div>
   );
 };
