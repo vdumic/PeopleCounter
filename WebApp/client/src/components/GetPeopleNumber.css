@@ -1,0 +1,19 @@
+.Counter {
+  text-align: center;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+}
+
+.totalsRow {
+  display: flex;
+  flex-direction: row;
+}
+
+.totalsRow > p {
+  margin-block: 70px;
+  margin-inline: 50px;
+}

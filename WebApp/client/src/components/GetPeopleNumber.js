@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
+
+import "./GetPeopleNumber.css";
 
 const GetPeopleNumber = () => {
   const [peopleInside, setPeopleInside] = useState("");
@@ -25,9 +29,25 @@ const GetPeopleNumber = () => {
   }, []);
 
   return (
-    <div>
-      <h2>Number of people</h2>
-      <div>{peopleInside - peopleOutside}</div>
+    <div className="Counter">
+      <h1>People Counter</h1>
+      <p>Number of people inside:</p>
+
+      <div style={{ width: 280, margin: "auto", padding: 20 }}>
+        <CircularProgressbar
+          value={peopleInside - peopleOutside}
+          maxValue={10}
+          text={`${peopleInside - peopleOutside}`}
+          styles={buildStyles({
+            textColor: "#485f8e",
+            pathColor: "#485f8e",
+          })}
+        />
+      </div>
+      <div className="totalsRow">
+        <p>Walked in total: {peopleInside}</p>
+        <p>Walked out total: {peopleOutside}</p>
+      </div>
       <Link to="/days">See max people per day</Link>
     </div>
   );
