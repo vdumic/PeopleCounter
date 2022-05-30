@@ -31,7 +31,7 @@ counterStructure counter_init() {
 
 boolean counter_inside(counterStructure currentState) {
 
-    if (hcIn.dist() < currentState.distanceIn * 0.25) {
+    if (hcIn.dist() < currentState.distanceIn * 0.75) {
         currentState.personNum.peopleInside++;
         return true;
     }
@@ -41,7 +41,7 @@ boolean counter_inside(counterStructure currentState) {
 
 boolean counter_outside(counterStructure currentState) {
 
-    if (hcOut.dist() < currentState.distanceOut * 0.25) {
+    if (hcOut.dist() < currentState.distanceOut * 0.75) {
         currentState.personNum.peopleOutside++;
         return true;
     }
