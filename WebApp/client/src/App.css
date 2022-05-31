@@ -42,3 +42,9 @@
   box-shadow: none;
   transform: translateY(0);
 }
+
+@media only screen and (max-width: 768px) {
+  .link {
+    width: 50%;
+  }
+}

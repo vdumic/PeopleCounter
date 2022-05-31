@@ -12,7 +12,7 @@ const GetPeopleNumber = () => {
 
   const getPeopleNumber = async () => {
     try {
-      const response = await fetch("http://192.168.0.20:5000/people/current");
+      const response = await fetch("http://localhost:5000/people/current");
       const jsonData = await response.json();
 
       setPeopleInside(jsonData[0].peopleinside);

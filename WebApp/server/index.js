@@ -32,7 +32,7 @@ app.post("/people", async (req, res) => {
 // Get all records from database
 app.get("/people", async (req, res) => {
   try {
-    const allRecords = await pool.query("SELECT * FROM peopleCounter");
+    const allRecords = await pool.query("SELECT * FROM peoplecounter");
 
     res.json(allRecords.rows);
   } catch (error) {
@@ -44,7 +44,7 @@ app.get("/people", async (req, res) => {
 app.get("/people/current", async (req, res) => {
   try {
     const latestRecord = await pool.query(
-      "SELECT * FROM peopleCounter ORDER BY time DESC LIMIT 1"
+      "SELECT * FROM peoplecounter ORDER BY time DESC LIMIT 1"
     );
 
     res.json(latestRecord.rows);
@@ -57,7 +57,7 @@ app.get("/people/current", async (req, res) => {
 app.get("/people/maxday", async (req, res) => {
   try {
     const maxPeoplePerDay = await pool.query(
-      "SELECT MAX(peopleInside) AS peopleEntered, time::date AS date FROM peopleCounter GROUP BY time::date"
+      "SELECT MAX(peopleInside) AS peopleEntered, time::date AS date FROM peoplecounter GROUP BY time::date"
     );
 
     res.json(maxPeoplePerDay.rows);

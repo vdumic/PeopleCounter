@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
+import "./MaxPeoplePerDay.css";
+import "./GetPeopleNumber.css";
 import "../App.css";
 
 const MaxPeoplePerDay = () => {
@@ -8,7 +10,7 @@ const MaxPeoplePerDay = () => {
 
   const getMaxPeoplePerDay = async () => {
     try {
-      const response = await fetch("http://192.168.0.20:5000/people/maxday");
+      const response = await fetch("http://localhost:5000/people/maxday");
       const jsonData = await response.json();
 
       setPeoplePerDay(jsonData);
@@ -24,30 +26,30 @@ const MaxPeoplePerDay = () => {
   }, []);
 
   return (
-    <div className="Counter">
+    <div className="container">
       <h1>People Counter</h1>
-      <div className="container">
-        <table>
-          <thead>
-            <tr>
-              <th scope="col">ID</th>
-              <th scope="col">People entered</th>
-              <th scope="col">Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            {peoplePerDay.map((day) => {
-              return (
-                <tr>
-                  <th scope="row">1</th>
-                  <td>{day.peopleentered}</td>
-                  <td>{day.date}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
+      <ul className="responsive-table">
+        <li className="table-header">
+          <div className="col col-1">ID</div>
+          <div className="col col-2">People Entered</div>
+          <div className="col col-3">Date</div>
+        </li>
+        {peoplePerDay.map((day) => {
+          return (
+            <li className="table-row">
+              <div className="col col-1" data-label="Job Id">
+                1
+              </div>
+              <div class="col col-2" data-label="Customer Name">
+                {day.peopleentered}
+              </div>
+              <div class="col col-3" data-label="Amount">
+                {day.date}
+              </div>
+            </li>
+          );
+        })}
+      </ul>
       <Link className="link" to="/">
         Go to Home page
       </Link>
