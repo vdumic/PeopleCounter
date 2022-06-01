@@ -10,7 +10,7 @@ const MaxPeoplePerDay = () => {
 
   const getMaxPeoplePerDay = async () => {
     try {
-      const response = await fetch("http://localhost:5000/people/maxday");
+      const response = await fetch("http://192.168.0.20:5000/people/maxday");
       const jsonData = await response.json();
 
       setPeoplePerDay(jsonData);
@@ -19,7 +19,15 @@ const MaxPeoplePerDay = () => {
     }
   };
 
-  console.log(peoplePerDay);
+  const handleDateTruncation = (str) => {
+    if (str !== null) {
+      return str.substr(0, 10);
+    } else {
+      return "";
+    }
+  };
+
+  let i = 1;
 
   useEffect(() => {
     getMaxPeoplePerDay();
@@ -38,19 +46,19 @@ const MaxPeoplePerDay = () => {
           return (
             <li className="table-row">
               <div className="col col-1" data-label="Job Id">
-                1
+                {i++}
               </div>
               <div class="col col-2" data-label="Customer Name">
                 {day.peopleentered}
               </div>
               <div class="col col-3" data-label="Amount">
-                {day.date}
+                {handleDateTruncation(day.date)}
               </div>
             </li>
           );
         })}
       </ul>
-      <Link className="link" to="/">
+      <Link className="link special" to="/">
         Go to Home page
       </Link>
     </div>
