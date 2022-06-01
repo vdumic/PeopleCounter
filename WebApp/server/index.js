@@ -57,7 +57,7 @@ app.get("/people/current", async (req, res) => {
 app.get("/people/maxday", async (req, res) => {
   try {
     const maxPeoplePerDay = await pool.query(
-      "SELECT MAX(peopleInside) AS peopleEntered, time::date AS date FROM peoplecounter GROUP BY time::date"
+      "SELECT MAX(peopleInside) AS peopleEntered, time::date + 1 AS date FROM peoplecounter GROUP BY date"
     );
 
     res.json(maxPeoplePerDay.rows);
