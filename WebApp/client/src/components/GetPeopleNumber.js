@@ -31,7 +31,7 @@ const GetPeopleNumber = () => {
 
   return (
     <div className="Counter">
-      <h1>People Counter</h1>
+      <h1 fontSize="40px">People Counter</h1>
       <p>Number of people inside:</p>
 
       <div style={{ width: 280, margin: "auto", padding: 20 }}>

@@ -8,7 +8,7 @@ counterStructure counter_init() {
     counterStructure initialState;
 
     initialState.intervalMin = 200;
-    initialState.intervalMax = 1000;
+    initialState.intervalMax = 1500;
     initialState.nextIn = initialState.nextOut = 0;
 
     // Setting initial distance for counting people going in

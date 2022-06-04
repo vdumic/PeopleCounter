@@ -25,9 +25,9 @@ void loop() {
     // Reassigning next time to check for people
     if (result) {
       // Doing it for both in and out because we don't want same person to be counted two times from two different sensors
+      http_client_send_data(countPeople.personNum.peopleInside, countPeople.personNum.peopleOutside);
       countPeople.nextOut = now + countPeople.intervalMax;
       countPeople.nextIn = now + countPeople.intervalMax;
-      http_client_send_data(countPeople.personNum.peopleInside, countPeople.personNum.peopleOutside);
     } else {
       countPeople.nextIn = now + countPeople.intervalMin;
     }
@@ -41,15 +41,11 @@ void loop() {
     // Reassigning next time to check for people
     if (result) {
       // Doing it for both in and out because we don't want same person to be counted two times from two different sensors
+      http_client_send_data(countPeople.personNum.peopleInside, countPeople.personNum.peopleOutside);
       countPeople.nextIn = now + countPeople.intervalMax;
       countPeople.nextOut = now + countPeople.intervalMax;
-      http_client_send_data(countPeople.personNum.peopleInside, countPeople.personNum.peopleOutside);
     } else {
       countPeople.nextOut = now + countPeople.intervalMin;
     }
   }
-
-  int currentNumber = countPeople.personNum.peopleInside - countPeople.personNum.peopleOutside;
-
-  print_current_state(countPeople);
 }

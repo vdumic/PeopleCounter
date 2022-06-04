@@ -9,6 +9,12 @@
   margin-bottom: 20px;
 }
 
+.Counter > h1 {
+  font-size: 45px;
+  margin: 20px 0;
+  text-align: center;
+}
+
 .totalsRow {
   display: flex;
   flex-direction: row;
